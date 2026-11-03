@@ -3,196 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cia dos Salgados e Doces - Pedidos Online</title>
-  
+  <title>Cia dos Salgados e Doces</title>
   <link rel="icon" type="image/png" href="./ico.png">
   
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fontes do Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Ícones e Animações -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Fraunces"', 'serif'],
+            script: ['"Pacifico"', 'cursive'],
+          },
           colors: {
-            brand: '#FF6B00',
-            dark: '#1A202C'
+            primary: '#c41d5e',      // Rosa brand
+            'primary-glow': '#f0426d',
+            secondary: '#20e5b5',    // Mint
+            chocolate: '#3a2318',    // Fundo escuro
+            cream: '#fdfbf9',        // Texto claro
+            blush: '#f9e8ea',        // Fundo das seções
+            whatsapp: '#25D366'
+          },
+          boxShadow: {
+            'candy': '0 12px 30px -10px rgba(196, 29, 94, 0.6)',
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.08)'
+          },
+          backgroundImage: {
+            'gradient-candy': 'linear-gradient(120deg, #c41d5e 0%, #f0426d 100%)',
+            'gradient-hero': 'linear-gradient(180deg, rgba(58,35,24,0.3) 0%, rgba(58,35,24,0.8) 100%)',
           },
           animation: {
-            'gradient-x': 'gradient-x 5s ease infinite',
-          },
-          keyframes: {
-            'gradient-x': {
-              '0%, 100%': {
-                'background-size': '200% 200%',
-                'background-position': 'left center'
-              },
-              '50%': {
-                'background-size': '200% 200%',
-                'background-position': 'right center'
-              },
-            }
+            'spin-slow': 'spin 12s linear infinite',
           }
         }
       }
     }
   </script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased overflow-x-hidden">
 
-  <!-- Header com Glassmorphism -->
-  <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="block transform transition hover:scale-105">
-        <img src="./logo.png" alt="Cia dos Salgados e Doces" class="h-12 md:h-14 w-auto object-contain">
+  <style>
+    /* Transições suaves para o carrossel de imagens */
+    .slide-img { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; }
+    .slide-img.active { opacity: 1; }
+    .filter-btn.active { background-color: #c41d5e; color: #fdfbf9; border-color: #c41d5e; box-shadow: 0 12px 30px -10px rgba(196, 29, 94, 0.6); }
+  </style>
+</head>
+<body class="bg-blush text-chocolate font-sans antialiased overflow-x-hidden">
+
+  <!-- Header mutável no scroll -->
+  <header id="main-header" class="fixed inset-x-0 top-0 z-50 py-4 transition-all duration-500 text-cream">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-10">
+      <a href="#" class="flex items-center gap-3">
+        <img src="./logo.png" alt="Cia dos Salgados e Doces" id="logo-img" class="h-14 w-14 object-contain transition-all duration-500 rounded-full bg-white/10 p-1">
+        <span id="logo-text" class="hidden font-script text-2xl transition-colors sm:block">Cia dos Salgados</span>
       </a>
-      <a href="#cardapio" class="bg-gradient-to-r from-brand to-orange-500 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transform hover:-translate-y-0.5 transition-all duration-300">
+      <a href="#cardapio" class="rounded-full bg-gradient-candy text-white font-bold px-6 py-2.5 shadow-candy transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
         Fazer Pedido
       </a>
     </div>
   </header>
 
-  <!-- Hero Section Animada -->
-  <section class="relative bg-gradient-to-br from-dark via-gray-900 to-black text-white py-24 px-4 text-center overflow-hidden">
-    <!-- Círculos de luz ao fundo para efeito moderno -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+  <!-- Hero Section com Carrossel -->
+  <section class="relative isolate h-[100svh] min-h-[600px] overflow-hidden bg-chocolate text-cream">
+    <!-- Imagens do Carrossel (usando Unsplash como placeholder visual para a demo) -->
+    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=2000" class="slide-img active object-cover w-full h-full">
+    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=2000" class="slide-img object-cover w-full h-full">
+    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2000" class="slide-img object-cover w-full h-full">
+    
+    <div class="absolute inset-0 z-[2] bg-gradient-hero"></div>
 
-    <div class="relative max-w-3xl mx-auto z-10" data-aos="fade-up" data-aos-duration="1000">
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-        Salgados quentinhos e <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-400 animate-gradient-x">doces artesanais</span>
-      </h1>
-      <p class="text-lg md:text-xl text-gray-300 mb-10 font-light" data-aos="fade-up" data-aos-delay="200">
-        Peça agora pelo nosso cardápio digital. Retire na nossa loja física ou receba no conforto de casa.
-      </p>
-      <div data-aos="fade-up" data-aos-delay="400">
-        <a href="#cardapio" class="inline-flex items-center gap-2 bg-brand text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl shadow-brand/30 hover:bg-orange-600 transform hover:scale-105 transition-all duration-300">
-          Ver Cardápio <i class="fas fa-arrow-down animate-bounce"></i>
+    <!-- Badge Redondo Giratório -->
+    <div class="absolute right-4 top-24 z-[3] md:right-12 md:top-32 hidden sm:block">
+      <div class="relative h-24 w-24 md:h-36 md:w-36">
+        <svg viewBox="0 0 100 100" class="absolute inset-0 animate-spin-slow">
+          <defs><path id="circle" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" /></defs>
+          <text class="fill-cream font-sans text-[10.5px] font-bold uppercase tracking-[0.2em]">
+            <textPath href="#circle">pronta entrega • encomendas • </textPath>
+          </text>
+        </svg>
+        <img src="./logo.png" class="absolute inset-[22%] rounded-full shadow-candy bg-white w-14 h-14 md:w-20 md:h-20 object-contain p-2">
+      </div>
+    </div>
+
+    <!-- Conteúdo Hero -->
+    <div class="relative z-[3] mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16 pt-32 md:px-10 md:pb-24">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <span id="hero-kicker" class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-candy">
+          <i class="fas fa-sparkles"></i> Salgados
+        </span>
+        <h1 class="mt-5 text-5xl font-display font-black leading-[0.95] md:text-8xl">
+          Sabores
+          <span id="hero-word" class="mt-2 block font-script text-[0.85em] font-normal leading-tight text-primary-glow">
+            crocantes
+          </span>
+        </h1>
+        <p id="hero-line" class="mt-5 max-w-md text-lg text-cream/85 md:text-xl">
+          fritos e assados, fresquinhos todo dia. Experiência única em cada sabor! ✨
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="200">
+        <a href="#" class="rounded-full bg-whatsapp text-white font-bold px-8 py-4 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 flex items-center gap-2">
+          <i class="fab fa-whatsapp text-xl"></i> Pedir pelo WhatsApp
+        </a>
+        <a href="#cardapio" class="rounded-full border border-cream/40 bg-cream/15 text-cream font-semibold px-8 py-4 backdrop-blur-md transition-all duration-300 hover:bg-cream/25 flex items-center gap-2">
+          Ver cardápio <i class="fas fa-arrow-down"></i>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Como Funciona -->
-  <section class="py-20 px-4 bg-white">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-16 text-gray-800" data-aos="fade-up">Como pedir?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <!-- Cardápio Section -->
+  <section id="cardapio" class="px-5 py-20 md:px-10 md:py-28">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center" data-aos="fade-up">
+        <p class="font-script text-2xl text-primary">nosso cardápio</p>
+        <h2 class="mt-1 text-4xl font-display font-black md:text-6xl text-chocolate">Escolha sua delícia</h2>
+      </div>
+
+      <!-- Filtros -->
+      <div class="mt-8 flex gap-2 overflow-x-auto px-2 pb-2 md:justify-center" data-aos="fade-up" data-aos-delay="100">
+        <button onclick="filterMenu('Todos', this)" class="filter-btn active shrink-0 rounded-full border-2 border-chocolate/20 px-6 py-2 text-sm font-bold transition-all duration-300">Todos</button>
+        <button onclick="filterMenu('Salgados', this)" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/20 px-6 py-2 text-sm font-bold transition-all duration-300 bg-white hover:border-primary">Salgados</button>
+        <button onclick="filterMenu('Doces', this)" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/20 px-6 py-2 text-sm font-bold transition-all duration-300 bg-white hover:border-primary">Doces</button>
+        <button onclick="filterMenu('Tortas', this)" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/20 px-6 py-2 text-sm font-bold transition-all duration-300 bg-white hover:border-primary">Tortas</button>
+      </div>
+
+      <!-- Grid de Produtos -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="menu-grid">
         
-        <div class="p-6 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
-          <div class="bg-orange-50 text-brand w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:bg-brand group-hover:text-white transition-colors duration-300 shadow-inner">
-            <i class="fas fa-mobile-alt"></i>
+        <!-- Produto 1 -->
+        <article class="menu-item group overflow-hidden rounded-3xl bg-white shadow-soft transition-transform duration-500 hover:-translate-y-2" data-category="Salgados" data-aos="fade-up">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gray-200">
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=600" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+            <span class="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-candy">Mais pedido</span>
+            <span class="absolute bottom-3 right-3 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-chocolate">Salgados</span>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">1. Escolha</h3>
-          <p class="text-gray-500 leading-relaxed">Navegue pelo nosso cardápio digital moderno e monte seu pedido rapidamente.</p>
-        </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold font-display">Coxinha Cremosa</h3>
+            <p class="mt-1 text-sm text-gray-500">Massa sequinha e recheio de frango bem temperado.</p>
+            <button class="mt-4 w-full rounded-full bg-gradient-candy text-white font-bold py-2 shadow-candy transition-all duration-300 hover:-translate-y-0.5">
+              <i class="fas fa-comment-dots"></i> Quero esse
+            </button>
+          </div>
+        </article>
 
-        <div class="p-6 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
-          <div class="bg-orange-50 text-brand w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:bg-brand group-hover:text-white transition-colors duration-300 shadow-inner">
-            <i class="fas fa-credit-card"></i>
+        <!-- Produto 2 -->
+        <article class="menu-item group overflow-hidden rounded-3xl bg-white shadow-soft transition-transform duration-500 hover:-translate-y-2" data-category="Doces" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gray-200">
+            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+            <span class="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-candy">Favorito</span>
+            <span class="absolute bottom-3 right-3 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-chocolate">Doces</span>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">2. Pague Fácil</h3>
-          <p class="text-gray-500 leading-relaxed">Pague direto no site via PIX ou Cartão com total segurança e praticidade.</p>
-        </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold font-display">Brigadeiros Gourmet</h3>
+            <p class="mt-1 text-sm text-gray-500">Tradicional, beijinho, ninho e pistache.</p>
+            <button class="mt-4 w-full rounded-full bg-gradient-candy text-white font-bold py-2 shadow-candy transition-all duration-300 hover:-translate-y-0.5">
+              <i class="fas fa-comment-dots"></i> Quero esse
+            </button>
+          </div>
+        </article>
 
-        <div class="p-6 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
-          <div class="bg-orange-50 text-brand w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:bg-brand group-hover:text-white transition-colors duration-300 shadow-inner">
-            <i class="fas fa-store"></i>
+        <!-- Produto 3 -->
+        <article class="menu-item group overflow-hidden rounded-3xl bg-white shadow-soft transition-transform duration-500 hover:-translate-y-2" data-category="Tortas" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gray-200">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+            <span class="absolute bottom-3 right-3 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-chocolate">Tortas</span>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">3. Aproveite</h3>
-          <p class="text-gray-500 leading-relaxed">Retire na loja sem filas ou aguarde o nosso delivery chegar quentinho.</p>
-        </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold font-display">Torta de Chocolate</h3>
+            <p class="mt-1 text-sm text-gray-500">Camadas de chocolate com caramelo escorrendo.</p>
+            <button class="mt-4 w-full rounded-full bg-gradient-candy text-white font-bold py-2 shadow-candy transition-all duration-300 hover:-translate-y-0.5">
+              <i class="fas fa-comment-dots"></i> Quero esse
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="menu-item group overflow-hidden rounded-3xl bg-white shadow-soft transition-transform duration-500 hover:-translate-y-2" data-category="Salgados" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gray-200">
+            <img src="https://images.unsplash.com/photo-1596650967527-2c9748bdfb1e?q=80&w=600" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+            <span class="absolute bottom-3 right-3 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-chocolate">Salgados</span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold font-display">Esfihas & Assados</h3>
+            <p class="mt-1 text-sm text-gray-500">Douradinhos, saindo direto do forno.</p>
+            <button class="mt-4 w-full rounded-full bg-gradient-candy text-white font-bold py-2 shadow-candy transition-all duration-300 hover:-translate-y-0.5">
+              <i class="fas fa-comment-dots"></i> Quero esse
+            </button>
+          </div>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <!-- Vitrine / Cardápio -->
-  <section id="cardapio" class="py-20 px-4 bg-gray-50 border-t border-gray-200">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-3xl font-bold text-gray-800">Os Mais Pedidos</h2>
-        <div class="w-16 h-1 bg-brand mx-auto mt-4 rounded-full"></div>
-      </div>
+  <!-- Lógica Vanilla JS para replicar o React -->
+  <script>
+    // 1. Efeito do Header no Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      const logoImg = document.getElementById('logo-img');
+      const logoText = document.getElementById('logo-text');
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Item 1 (Com efeito de transição de imagem) -->
-        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group flex flex-row" data-aos="fade-up" data-aos-delay="100">
-          <!-- Container da Imagem com overflow hidden para o zoom -->
-          <div class="w-1/3 relative overflow-hidden bg-gray-100 flex-shrink-0">
-            <!-- Simulação de imagem: Quando houver foto real, coloque no src. O efeito de scale está no group-hover -->
-            <div class="absolute inset-0 flex items-center justify-center text-gray-400 group-hover:scale-110 group-hover:rotate-1 transition-transform duration-500">
-               <i class="fas fa-camera fa-2x"></i>
-            </div>
-          </div>
-          
-          <div class="p-5 flex-1 flex flex-col justify-between">
-            <div>
-              <h4 class="font-bold text-xl text-gray-800 group-hover:text-brand transition-colors">Cento de Coxinha</h4>
-              <p class="text-sm text-gray-500 mt-2 line-clamp-2">Massa de batata, frango desfiado com tempero especial da casa. Fritas na hora.</p>
-            </div>
-            <div class="flex justify-between items-end mt-4">
-              <span class="font-extrabold text-xl text-brand">R$ 45,00</span>
-              <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:bg-brand hover:text-white transform active:scale-95 transition-all">
-                <i class="fas fa-cart-plus mr-1"></i> Add
-              </button>
-            </div>
-          </div>
-        </div>
+      if (window.scrollY > 40) {
+        header.classList.add('bg-chocolate/95', 'backdrop-blur-lg', 'shadow-soft', 'py-2');
+        header.classList.remove('py-4');
+        logoImg.classList.replace('h-14', 'h-11');
+        logoImg.classList.replace('w-14', 'w-11');
+        logoText.classList.replace('text-cream', 'text-primary');
+      } else {
+        header.classList.remove('bg-chocolate/95', 'backdrop-blur-lg', 'shadow-soft', 'py-2');
+        header.classList.add('py-4');
+        logoImg.classList.replace('h-11', 'h-14');
+        logoImg.classList.replace('w-11', 'w-14');
+        logoText.classList.replace('text-primary', 'text-cream');
+      }
+    });
 
-        <!-- Item 2 (Com efeito de transição de imagem) -->
-        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group flex flex-row" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-1/3 relative overflow-hidden bg-gray-100 flex-shrink-0">
-            <div class="absolute inset-0 flex items-center justify-center text-gray-400 group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-500">
-               <i class="fas fa-camera fa-2x"></i>
-            </div>
-          </div>
-          
-          <div class="p-5 flex-1 flex flex-col justify-between">
-            <div>
-              <h4 class="font-bold text-xl text-gray-800 group-hover:text-brand transition-colors">Caixa Mista (50 un)</h4>
-              <p class="text-sm text-gray-500 mt-2 line-clamp-2">Brigadeiro, Beijinho e Cajuzinho. Feitos com ingredientes premium.</p>
-            </div>
-            <div class="flex justify-between items-end mt-4">
-              <span class="font-extrabold text-xl text-brand">R$ 60,00</span>
-              <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:bg-brand hover:text-white transform active:scale-95 transition-all">
-                <i class="fas fa-cart-plus mr-1"></i> Add
-              </button>
-            </div>
-          </div>
-        </div>
+    // 2. Carrossel Automático (SlideShow)
+    const slidesData = [
+      { kicker: 'Salgados', word: 'crocantes', line: 'fritos e assados, fresquinhos todo dia' },
+      { kicker: 'Doces', word: 'irresistíveis', line: 'brigadeiros e docinhos feitos com amor' },
+      { kicker: 'Tortas', word: 'de dar água na boca', line: 'fatias generosas e bolos para festas' }
+    ];
+    let currentSlide = 0;
+    const slideImages = document.querySelectorAll('.slide-img');
+    
+    setInterval(() => {
+      slideImages[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slidesData.length;
+      slideImages[currentSlide].classList.add('active');
+      
+      document.getElementById('hero-kicker').innerHTML = `<i class="fas fa-sparkles"></i> ${slidesData[currentSlide].kicker}`;
+      document.getElementById('hero-word').innerText = slidesData[currentSlide].word;
+      document.getElementById('hero-line').innerHTML = `${slidesData[currentSlide].line}. Experiência única em cada sabor! ✨`;
+    }, 5500);
 
-      </div>
-    </div>
-  </section>
+    // 3. Filtro do Cardápio
+    function filterMenu(category, btnElement) {
+      // Atualiza botões
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+        btn.classList.add('bg-white', 'text-chocolate');
+      });
+      btnElement.classList.add('active');
+      btnElement.classList.remove('bg-white', 'text-chocolate');
 
-  <!-- Footer -->
-  <footer class="bg-dark text-gray-400 py-10 px-4 border-t border-gray-800 text-center">
-    <div class="max-w-3xl mx-auto">
-      <div class="flex justify-center gap-4 mb-6">
-        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <p class="mb-4 text-sm">Rua Exemplo, 123 - Centro | Atendimento: Terça a Domingo</p>
-      <div class="text-xs border-t border-gray-800 pt-6 mt-6">
-        <p>Protótipo visual de validação comercial.</p>
-      </div>
-    </div>
-  </footer>
+      // Filtra itens
+      const items = document.querySelectorAll('.menu-item');
+      items.forEach(item => {
+        if (category === 'Todos' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
 
-  <!-- AOS Script Initialization -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      once: true, // A animação ocorre apenas na primeira rolagem
-      offset: 50, // Dispara a animação 50px antes de aparecer na tela
-      duration: 800, // Duração da animação
-      easing: 'ease-out-cubic',
-    });
+    AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
   </script>
 </body>
 </html>
