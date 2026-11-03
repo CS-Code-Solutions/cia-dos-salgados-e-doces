@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cia dos Salgados e Doces - Pedidos Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#FF6B00', /* Laranja que estimula o apetite */
+            dark: '#2D3748'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header / Nav -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="font-bold text-2xl text-brand">
+        <i class="fas fa-cookie-bite mr-2"></i>Cia dos Salgados
+      </div>
+      <a href="#cardapio" class="bg-brand text-white px-5 py-2 rounded-full font-semibold hover:bg-orange-600 transition">
+        Fazer Pedido
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-dark text-white py-20 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Salgados quentinhos e doces artesanais, a um clique de você!
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 mb-10">
+        Peça agora pelo nosso cardápio digital. Retire na nossa loja física ou receba no conforto de casa.
+      </p>
+      <div class="flex justify-center gap-4">
+        <a href="#cardapio" class="bg-brand text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg hover:bg-orange-600 transition">
+          Ver Cardápio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-12 text-gray-800">Como pedir?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6">
+          <div class="bg-orange-100 text-brand w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">1. Escolha</h3>
+          <p class="text-gray-600">Navegue pelo nosso cardápio digital e monte seu pedido.</p>
+        </div>
+        <div class="p-6">
+          <div class="bg-orange-100 text-brand w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">2. Pague Fácil</h3>
+          <p class="text-gray-600">Pague direto no site via PIX ou Cartão com total segurança.</p>
+        </div>
+        <div class="p-6">
+          <div class="bg-orange-100 text-brand w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fas fa-store"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">3. Aproveite</h3>
+          <p class="text-gray-600">Retire na loja sem filas ou aguarde o delivery chegar quentinho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vitrine / Cardápio (Exemplo) -->
+  <section id="cardapio" class="py-16 px-4 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Os Mais Pedidos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Item 1 -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+          <div class="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
+            <i class="fas fa-image fa-2x"></i>
+          </div>
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-lg">Cento de Coxinha</h4>
+              <p class="text-sm text-gray-500">Massa de batata, frango desfiado temperado. Fritas na hora.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="font-bold text-brand">R$ 45,00</span>
+              <button class="bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-brand hover:text-white transition">
+                <i class="fas fa-plus"></i> Adicionar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+          <div class="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
+            <i class="fas fa-image fa-2x"></i>
+          </div>
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-lg">Caixa Mista de Doces (50 un)</h4>
+              <p class="text-sm text-gray-500">Brigadeiro, Beijinho e Cajuzinho. Feitos com leite condensado premium.</p>
+            </div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="font-bold text-brand">R$ 60,00</span>
+              <button class="bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-brand hover:text-white transition">
+                <i class="fas fa-plus"></i> Adicionar
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-gray-400 py-8 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <p class="mb-4">Rua Exemplo, 123 - Centro | Atendimento: Terça a Domingo</p>
+      <div class="text-sm border-t border-gray-700 pt-6 mt-6">
+        <p>Projeto demonstrativo.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
