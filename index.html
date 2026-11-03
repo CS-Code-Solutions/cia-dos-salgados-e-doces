@@ -62,6 +62,8 @@
     .slide-img.active { opacity: 1; }
     .filter-btn.active { background-color: #c41d5e; color: #fdfbf9; border-color: #c41d5e; box-shadow: 0 12px 30px -10px rgba(196, 29, 94, 0.6); }
     .marquee-container { display: flex; width: 200%; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="bg-blush text-chocolate font-sans antialiased overflow-x-hidden">
@@ -70,7 +72,7 @@
   <header id="main-header" class="absolute inset-x-0 top-0 z-50 py-4 transition-all duration-500">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-10">
       <a href="#" class="flex items-center gap-3">
-        <img src="./logo.png" alt="Logo" class="h-14 w-14 object-contain rounded-full bg-white/90 p-1 shadow-soft">
+        <img src="./logo.png" alt="Logo Cia dos Salgados e Doces" class="h-14 w-14 object-contain rounded-full bg-white/90 p-1 shadow-soft">
       </a>
       <a href="#cardapio" class="rounded-full bg-whatsapp text-white font-bold px-6 py-2.5 shadow-soft transition-all duration-300 hover:scale-105 flex items-center gap-2">
         <i class="far fa-comment-dots"></i> Pedir
@@ -79,13 +81,13 @@
   </header>
 
   <!-- Botão Flutuante WhatsApp -->
-  <a href="#" class="fixed bottom-6 right-6 z-50 bg-whatsapp text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-soft hover:scale-110 transition-transform">
+  <a href="https://wa.me/5551993214833" target="_blank" rel="noreferrer" class="fixed bottom-6 right-6 z-50 bg-whatsapp text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-soft hover:scale-110 transition-transform">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <!-- Hero Section -->
   <section class="relative isolate h-[90svh] min-h-[600px] overflow-hidden bg-chocolate text-cream">
-    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=1000" class="slide-img active object-cover w-full h-full">
+    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=1000" class="slide-img active object-cover w-full h-full" alt="Banner Salgados e Doces">
     <div class="absolute inset-0 z-[2] bg-gradient-hero"></div>
 
     <div class="absolute right-4 top-24 z-[3] hidden sm:block">
@@ -96,7 +98,7 @@
             <textPath href="#circle">pronta entrega • encomendas • </textPath>
           </text>
         </svg>
-        <img src="./logo.png" class="absolute inset-[22%] rounded-full shadow-candy bg-white w-14 h-14 object-contain p-1">
+        <img src="./logo.png" class="absolute inset-[22%] rounded-full shadow-candy bg-white w-14 h-14 object-contain p-1" alt="Selo">
       </div>
     </div>
 
@@ -105,9 +107,12 @@
         <span class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-candy">
           <i class="fas fa-sparkles"></i> Doces
         </span>
-        <h1 class="mt-4 text-5xl font-display font-black leading-[0.95]">
+        <!-- Título ajustado em flex-wrap para manter palavras lado a lado sem sobreposição -->
+        <h1 class="mt-4 text-4xl sm:text-6xl font-display font-black leading-tight flex flex-wrap items-baseline gap-x-3">
           Sabores
-          <span class="mt-1 block font-script text-[0.85em] font-normal text-primary-glow">irresistíveis</span>
+          <span id="hero-word" class="font-script text-[0.85em] font-normal text-primary-glow leading-none">
+            irresistíveis
+          </span>
         </h1>
         <p class="mt-4 max-w-md text-lg text-cream/90 font-medium">
           brigadeiros e docinhos feitos com amor.<br>Experiência única em cada sabor! ✨
@@ -115,7 +120,7 @@
       </div>
 
       <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="100">
-        <a href="#" class="rounded-full bg-gradient-candy text-white font-bold px-8 py-4 shadow-candy transition-all duration-300 text-center text-lg hover:-translate-y-0.5">
+        <a href="https://wa.me/5551993214833" target="_blank" rel="noreferrer" class="rounded-full bg-gradient-candy text-white font-bold px-8 py-4 shadow-candy transition-all duration-300 text-center text-lg hover:-translate-y-0.5">
           Pedir pelo WhatsApp
         </a>
         <a href="#cardapio" class="rounded-full border border-cream/40 bg-cream/15 text-cream font-semibold px-8 py-4 backdrop-blur-md transition-all duration-300 text-center hover:bg-cream/25">
@@ -132,23 +137,24 @@
     </div>
   </section>
 
-  <!-- Marquee (Letreiro Rolante) -->
-  <div class="bg-primary text-white overflow-hidden py-3 shadow-soft">
+  <!-- Marquee (Letreiro Rolante em Ângulo) -->
+  <div class="relative z-20 -rotate-2 -mx-4 -my-2 bg-primary text-white overflow-hidden py-3.5 shadow-candy border-y-2 border-white/20">
     <div class="animate-marquee marquee-container font-display font-bold text-lg">
       <span class="mx-4 flex items-center gap-4">
-        Coxinha <i class="fas fa-star text-xs text-yellow-300"></i>
-        Esfiha <i class="fas fa-star text-xs text-yellow-300"></i>
-        Torta <i class="fas fa-star text-xs text-yellow-300"></i>
-        Bolinha de queijo <i class="fas fa-star text-xs text-yellow-300"></i>
-        Kibe <i class="fas fa-star text-xs text-yellow-300"></i>
-        Brigadeiro <i class="fas fa-star text-xs text-yellow-300"></i>
-        Empada <i class="fas fa-star text-xs text-yellow-300"></i>
-        <!-- Duplicado para fluidez infinita -->
-        Coxinha <i class="fas fa-star text-xs text-yellow-300"></i>
-        Esfiha <i class="fas fa-star text-xs text-yellow-300"></i>
-        Torta <i class="fas fa-star text-xs text-yellow-300"></i>
-        Bolinha de queijo <i class="fas fa-star text-xs text-yellow-300"></i>
-        Kibe <i class="fas fa-star text-xs text-yellow-300"></i>
+        Bolinha de queijo <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Esfiha <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Torta <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Coxinha <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Kibe <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Brigadeiro <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Empada <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        <!-- Duplicado para efeito contínuo sem saltos -->
+        Bolinha de queijo <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Esfiha <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Torta <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Coxinha <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Kibe <i class="fas fa-sparkles text-xs text-yellow-300"></i>
+        Brigadeiro <i class="fas fa-sparkles text-xs text-yellow-300"></i>
       </span>
     </div>
   </div>
@@ -164,7 +170,7 @@
       <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
         <!-- Card 1 -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group" data-aos="fade-up">
-          <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Doces">
           <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
           <div class="absolute bottom-4 left-4 right-4 text-white">
             <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-cookie"></i></div>
@@ -174,7 +180,7 @@
         </div>
         <!-- Card 2 -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Salgados">
           <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
           <div class="absolute bottom-4 left-4 right-4 text-white">
             <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-utensils"></i></div>
@@ -184,7 +190,7 @@
         </div>
         <!-- Card 3 -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Bolos e Tortas">
           <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
           <div class="absolute bottom-4 left-4 right-4 text-white">
             <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-birthday-cake"></i></div>
@@ -194,7 +200,7 @@
         </div>
         <!-- Card 4 -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group" data-aos="fade-up" data-aos-delay="300">
-          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Kit Festa">
           <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
           <div class="absolute bottom-4 left-4 right-4 text-white">
             <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-gift"></i></div>
@@ -228,58 +234,58 @@
         <!-- Produto 1 -->
         <article class="bg-white rounded-[1.5rem] shadow-soft overflow-hidden" data-aos="fade-up">
           <div class="relative aspect-square">
-            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="w-full h-full object-cover" alt="Coxinha cremosa">
             <span class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-candy">Mais pedido</span>
           </div>
           <div class="p-3">
             <h3 class="font-bold text-sm leading-tight text-chocolate">Coxinha cremosa</h3>
             <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Massa sequinha e recheio de frango bem...</p>
-            <button class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
+            <a href="https://wa.me/5551993214833?text=Ol%C3%A1!%20Quero%20pedir:%20Coxinha%20cremosa" target="_blank" rel="noreferrer" class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
               <i class="far fa-comment-dots"></i> Quero esse
-            </button>
+            </a>
           </div>
         </article>
 
         <!-- Produto 2 -->
         <article class="bg-white rounded-[1.5rem] shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="100">
           <div class="relative aspect-square">
-            <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400" class="w-full h-full object-cover" alt="Mix de fritos">
           </div>
           <div class="p-3">
             <h3 class="font-bold text-sm leading-tight text-chocolate">Mix de fritos</h3>
             <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Coxinha, kibe, bolinha de queijo e muito mais.</p>
-            <button class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
+            <a href="https://wa.me/5551993214833?text=Ol%C3%A1!%20Quero%20pedir:%20Mix%20de%20fritos" target="_blank" rel="noreferrer" class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
               <i class="far fa-comment-dots"></i> Quero esse
-            </button>
+            </a>
           </div>
         </article>
 
         <!-- Produto 3 -->
         <article class="bg-white rounded-[1.5rem] shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="200">
           <div class="relative aspect-square">
-            <img src="https://images.unsplash.com/photo-1596650967527-2c9748bdfb1e?q=80&w=400" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1596650967527-2c9748bdfb1e?q=80&w=400" class="w-full h-full object-cover" alt="Esfihas & assados">
           </div>
           <div class="p-3">
             <h3 class="font-bold text-sm leading-tight text-chocolate">Esfihas & assados</h3>
             <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Douradinhos, saindo do forno.</p>
-            <button class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
+            <a href="https://wa.me/5551993214833?text=Ol%C3%A1!%20Quero%20pedir:%20Esfihas%20%26%20assados" target="_blank" rel="noreferrer" class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
               <i class="far fa-comment-dots"></i> Quero esse
-            </button>
+            </a>
           </div>
         </article>
 
         <!-- Produto 4 -->
         <article class="bg-white rounded-[1.5rem] shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="300">
           <div class="relative aspect-square">
-            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="w-full h-full object-cover" alt="Brigadeiros gourmet">
             <span class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-candy">Favorito</span>
           </div>
           <div class="p-3">
             <h3 class="font-bold text-sm leading-tight text-chocolate">Brigadeiros gourmet</h3>
             <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Tradicional, beijinho, ninho, pistache e...</p>
-            <button class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
+            <a href="https://wa.me/5551993214833?text=Ol%C3%A1!%20Quero%20pedir:%20Brigadeiros%20gourmet" target="_blank" rel="noreferrer" class="mt-3 w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1 shadow-candy">
               <i class="far fa-comment-dots"></i> Quero esse
-            </button>
+            </a>
           </div>
         </article>
 
@@ -298,7 +304,7 @@
         </div>
 
         <div class="md:w-1/2 h-64 md:h-auto relative">
-          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="w-full h-full object-cover">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="w-full h-full object-cover" alt="Promoção Tortas">
         </div>
         
         <div class="md:w-1/2 p-8 text-cream">
@@ -317,9 +323,9 @@
           </div>
 
           <p class="text-sm text-gray-400 mb-4">Você escolhe o sabor!</p>
-          <button class="w-full rounded-full bg-gradient-candy text-white font-bold py-4 shadow-candy transition-all duration-300 hover:scale-105">
+          <a href="https://wa.me/5551993214833?text=Ol%C3%A1!%20Quero%20aproveitar%20a%20promo%C3%A7%C3%A3o%20de%20fatias%20de%20torta" target="_blank" rel="noreferrer" class="block text-center w-full rounded-full bg-gradient-candy text-white font-bold py-4 shadow-candy transition-all duration-300 hover:scale-105">
             Quero minhas fatias
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -379,9 +385,9 @@
     <p class="text-gray-600 mb-10 max-w-sm mx-auto">Por trás de cada delícia, o cuidado das nossas confeiteiras Larissa e Luany.</p>
     
     <div class="flex justify-center items-center h-48 relative max-w-sm mx-auto">
-      <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=300" class="w-32 h-40 object-cover rounded-2xl absolute left-0 rotate-[-10deg] shadow-soft z-10" data-aos="fade-right">
-      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=300" class="w-40 h-48 object-cover rounded-2xl absolute z-20 shadow-soft" data-aos="zoom-in">
-      <img src="https://images.unsplash.com/photo-1596650967527-2c9748bdfb1e?q=80&w=300" class="w-32 h-40 object-cover rounded-2xl absolute right-0 rotate-[10deg] shadow-soft z-10" data-aos="fade-left">
+      <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=300" class="w-32 h-40 object-cover rounded-2xl absolute left-0 rotate-[-10deg] shadow-soft z-10" data-aos="fade-right" alt="Confeitaria 1">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=300" class="w-40 h-48 object-cover rounded-2xl absolute z-20 shadow-soft" data-aos="zoom-in" alt="Confeitaria 2">
+      <img src="https://images.unsplash.com/photo-1596650967527-2c9748bdfb1e?q=80&w=300" class="w-32 h-40 object-cover rounded-2xl absolute right-0 rotate-[10deg] shadow-soft z-10" data-aos="fade-left" alt="Confeitaria 3">
     </div>
   </section>
 
@@ -391,31 +397,35 @@
       <h2 class="text-5xl font-display font-black leading-tight mb-4 text-center">Bateu a vontade?<br>Chama a gente!</h2>
       <p class="text-center text-white/90 mb-8">Faça seu pedido ou orçamento gratuito agora mesmo pelo WhatsApp.</p>
       
-      <a href="#" class="w-full bg-whatsapp text-white rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4 hover:scale-105 transition-transform">
+      <a href="https://wa.me/5551993214833" target="_blank" rel="noreferrer" class="w-full bg-whatsapp text-white rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4 hover:scale-105 transition-transform">
         <i class="fab fa-whatsapp text-4xl"></i>
         <span class="font-display font-bold text-2xl">(51) 99321-4833</span>
       </a>
 
-      <div class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4">
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Feitoria+2300" target="_blank" rel="noreferrer" class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4 block">
         <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
         <div>
           <p class="text-xs font-bold text-gray-400 tracking-wider">ENDEREÇO</p>
           <p class="font-bold">Av. Feitoria, 2300</p>
         </div>
-      </div>
+      </a>
 
-      <div class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-12">
+      <a href="https://www.instagram.com/cia_dos_salgados_e_doces" target="_blank" rel="noreferrer" class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-12 block">
         <i class="fab fa-instagram text-primary text-2xl"></i>
         <div>
           <p class="text-xs font-bold text-gray-400 tracking-wider">INSTAGRAM</p>
           <p class="font-bold">@cia_dos_salgados_e_doces</p>
         </div>
-      </div>
+      </a>
 
-      <div class="text-center">
-        <img src="./logo.png" class="h-20 w-20 mx-auto object-contain bg-white rounded-full p-1 mb-4 shadow-soft">
-        <p class="text-xs text-white/80">Pronta entrega e encomendas • Av. Feitoria, 2300</p>
-        <p class="text-xs text-white/60 mt-1">© 2026 Cia dos Salgados e Doces</p>
+      <div class="text-center border-t border-white/20 pt-8 mt-4">
+        <img src="./logo.png" class="h-20 w-20 mx-auto object-contain bg-white rounded-full p-1 mb-4 shadow-soft" alt="Logo Rodapé">
+        <p class="text-xs text-white/90 font-medium">® Cia dos Salgados e Doces | Todos os direitos reservados</p>
+        <p class="text-xs text-white/80 mt-1">
+          <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="hover:underline font-semibold">
+            Powered by CS Code Solutions
+          </a>
+        </p>
       </div>
     </div>
   </footer>
