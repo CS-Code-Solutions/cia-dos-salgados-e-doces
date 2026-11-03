@@ -85,7 +85,7 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Hero Section (Com as 3 imagens do Carrossel ativas) -->
+  <!-- Hero Section -->
   <section class="relative isolate h-[92svh] min-h-[620px] overflow-hidden bg-chocolate text-cream">
     <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=1200&q=80" class="slide-img active object-cover w-full h-full" alt="Banner Salgados">
     <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80" class="slide-img object-cover w-full h-full" alt="Banner Doces">
@@ -93,15 +93,20 @@
     
     <div class="absolute inset-0 z-[2] bg-gradient-hero"></div>
 
-    <div class="absolute right-4 top-28 z-[3] hidden sm:block">
-      <div class="relative h-24 w-24">
-        <svg viewBox="0 0 100 100" class="absolute inset-0 animate-spin-slow">
-          <defs><path id="circle" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" /></defs>
-          <text class="fill-cream font-sans text-[10.5px] font-bold uppercase tracking-[0.2em]">
-            <textPath href="#circle">pronta entrega • encomendas • </textPath>
+    <!-- Selo com frase giratória e ico.png no centro (posicionado abaixo do botão 'Pedir') -->
+    <div class="absolute right-5 top-24 md:right-10 md:top-28 z-[3] hidden sm:block">
+      <div class="relative h-28 w-28 md:h-36 md:w-36 flex items-center justify-center">
+        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full animate-spin-slow">
+          <defs>
+            <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+          </defs>
+          <text class="fill-cream font-sans text-[9px] font-bold uppercase tracking-[0.18em]">
+            <textPath href="#circlePath">
+              pronta entrega • encomendas • 
+            </textPath>
           </text>
         </svg>
-        <img src="./logo.png" class="absolute inset-[20%] w-14 h-14 object-contain" alt="Selo">
+        <img src="./ico.png" class="w-12 h-12 md:w-16 md:h-16 object-contain relative z-10" alt="Ícone Cia dos Salgados e Doces">
       </div>
     </div>
 
@@ -265,7 +270,7 @@
           </div>
         </article>
 
-        <!-- Produto 3 (Imagem corrigida: Esfihas & assados) -->
+        <!-- Produto 3 -->
         <article class="bg-white rounded-[1.5rem] shadow-soft overflow-hidden" data-aos="fade-up" data-aos-delay="200">
           <div class="relative aspect-square">
             <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Esfihas & assados">
@@ -383,7 +388,7 @@
     </div>
   </section>
 
-  <!-- Sobre nós (Imagens Sobrepostas - Confeitaria 3 corrigida) -->
+  <!-- Sobre nós (Imagens Sobrepostas) -->
   <section class="bg-blush px-5 py-16 text-center">
     <p class="font-script text-2xl text-primary mb-1">feito com amor</p>
     <h2 class="text-4xl font-display font-black text-chocolate mb-4">Experiência única em cada sabor</h2>
