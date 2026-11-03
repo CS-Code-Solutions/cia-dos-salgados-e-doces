@@ -44,7 +44,7 @@
           },
           animation: {
             'spin-slow': 'spin 12s linear infinite',
-            'marquee': 'marquee 15s linear infinite',
+            'marquee': 'marquee 18s linear infinite',
           },
           keyframes: {
             marquee: {
@@ -104,17 +104,20 @@
 
     <div class="relative z-[3] mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16">
       <div data-aos="fade-up">
-        <span class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-candy">
-          <i class="fas fa-sparkles"></i> Doces
+        <span id="hero-kicker" class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-candy">
+          <i class="fas fa-sparkles"></i> Salgados
         </span>
-        <h1 class="mt-4 text-4xl sm:text-6xl font-display font-black leading-tight flex flex-wrap items-baseline gap-x-3">
-          Sabores
-          <span id="hero-word" class="font-script text-[0.85em] font-normal text-primary-glow leading-none">
-            irresistíveis
+
+        <!-- Título com layout elegante lado a lado -->
+        <h1 class="mt-4 text-3xl sm:text-5xl md:text-6xl font-display font-black leading-tight flex flex-wrap items-baseline gap-x-3">
+          <span>Sabores</span>
+          <span id="hero-word" class="font-script text-[0.85em] font-normal text-primary-glow leading-none whitespace-nowrap">
+            crocantes
           </span>
         </h1>
-        <p class="mt-4 max-w-md text-lg text-cream/90 font-medium">
-          brigadeiros e docinhos feitos com amor.<br>Experiência única em cada sabor! ✨
+
+        <p id="hero-line" class="mt-4 max-w-md text-lg text-cream/90 font-medium">
+          fritos e assados, fresquinhos todo dia.<br>Experiência única em cada sabor! ✨
         </p>
       </div>
 
@@ -136,25 +139,25 @@
     </div>
   </section>
 
-  <!-- Marquee (Letreiro Rolante em Ângulo com Estrela ✦ Dourada de 4 Pontas) -->
+  <!-- Marquee (Letreiro Rolante em Ângulo - Palavras lado a lado) -->
   <div class="relative z-20 -rotate-2 -mx-4 -my-2 bg-primary text-white overflow-hidden py-3.5 shadow-candy border-y-2 border-white/20">
-    <div class="animate-marquee marquee-container font-display font-bold text-lg">
-      <span class="mx-4 flex items-center gap-4">
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Bolinha de queijo 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Esfiha 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Torta 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Coxinha 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Kibe 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Brigadeiro 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Empada 
+    <div class="animate-marquee marquee-container font-display font-bold text-base md:text-lg">
+      <span class="mx-4 flex items-center gap-4 whitespace-nowrap">
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Bolinha de queijo</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Esfiha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Torta</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Coxinha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Kibe</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Brigadeiro</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Empada</span>
         <!-- Duplicado para efeito contínuo sem saltos -->
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Bolinha de queijo 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Esfiha 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Torta 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Coxinha 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Kibe 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Brigadeiro 
-        <span class="text-yellow-300 text-xl font-normal">✦</span> Empada 
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Bolinha de queijo</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Esfiha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Torta</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Coxinha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Kibe</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Brigadeiro</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Empada</span>
       </span>
     </div>
   </div>
@@ -433,6 +436,27 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ once: true, offset: 30, duration: 800, easing: 'ease-out-cubic' });
+
+    // Script do Carrossel do Hero
+    const slidesData = [
+      { kicker: 'Salgados', word: 'crocantes', line: 'fritos e assados, fresquinhos todo dia.<br>Experiência única em cada sabor! ✨' },
+      { kicker: 'Doces', word: 'irresistíveis', line: 'brigadeiros e docinhos feitos com amor.<br>Experiência única em cada sabor! ✨' },
+      { kicker: 'Tortas', word: 'de dar água na boca', line: 'fatias generosas e bolos para festas.<br>Experiência única em cada sabor! ✨' }
+    ];
+    let currentSlide = 0;
+    const slideImages = document.querySelectorAll('.slide-img');
+    
+    setInterval(() => {
+      if (slideImages.length > 0) {
+        slideImages[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slidesData.length;
+        slideImages[currentSlide].classList.add('active');
+        
+        document.getElementById('hero-kicker').innerHTML = `<i class="fas fa-sparkles"></i> ${slidesData[currentSlide].kicker}`;
+        document.getElementById('hero-word').innerText = slidesData[currentSlide].word;
+        document.getElementById('hero-line').innerHTML = slidesData[currentSlide].line;
+      }
+    }, 5500);
   </script>
 </body>
 </html>
