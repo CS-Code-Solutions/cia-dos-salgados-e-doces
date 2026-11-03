@@ -68,13 +68,13 @@
 </head>
 <body class="bg-blush text-chocolate font-sans antialiased overflow-x-hidden">
 
-  <!-- Header -->
+  <!-- Header sem círculo branco no logo -->
   <header id="main-header" class="absolute inset-x-0 top-0 z-50 py-4 transition-all duration-500">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-10">
       <a href="#" class="flex items-center gap-3">
-        <img src="./logo.png" alt="Logo Cia dos Salgados e Doces" class="h-14 w-14 object-contain rounded-full bg-white/90 p-1 shadow-soft">
+        <img src="./logo.png" alt="Logo Cia dos Salgados e Doces" class="h-12 md:h-16 w-auto object-contain">
       </a>
-      <a href="#cardapio" class="rounded-full bg-whatsapp text-white font-bold px-6 py-2.5 shadow-soft transition-all duration-300 hover:scale-105 flex items-center gap-2">
+      <a href="#cardapio" class="rounded-full bg-whatsapp text-white font-bold px-6 py-2.5 shadow-soft transition-all duration-300 hover:scale-105 flex items-center gap-2 text-sm">
         <i class="far fa-comment-dots"></i> Pedir
       </a>
     </div>
@@ -86,7 +86,7 @@
   </a>
 
   <!-- Hero Section -->
-  <section class="relative isolate h-[90svh] min-h-[600px] overflow-hidden bg-chocolate text-cream">
+  <section class="relative isolate h-[92svh] min-h-[620px] overflow-hidden bg-chocolate text-cream">
     <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=1000" class="slide-img active object-cover w-full h-full" alt="Banner Salgados e Doces">
     <div class="absolute inset-0 z-[2] bg-gradient-hero"></div>
 
@@ -98,48 +98,50 @@
             <textPath href="#circle">pronta entrega • encomendas • </textPath>
           </text>
         </svg>
-        <img src="./logo.png" class="absolute inset-[22%] rounded-full shadow-candy bg-white w-14 h-14 object-contain p-1" alt="Selo">
+        <img src="./logo.png" class="absolute inset-[20%] w-14 h-14 object-contain" alt="Selo">
       </div>
     </div>
 
-    <div class="relative z-[3] mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16">
-      <div data-aos="fade-up">
-        <span id="hero-kicker" class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-candy">
+    <div class="relative z-[3] mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-14">
+      <div data-aos="fade-up" class="text-left">
+        <span id="hero-kicker" class="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-candy">
           <i class="fas fa-sparkles"></i> Salgados
         </span>
 
-        <!-- Título com layout elegante lado a lado -->
-        <h1 class="mt-4 text-3xl sm:text-5xl md:text-6xl font-display font-black leading-tight flex flex-wrap items-baseline gap-x-3">
-          <span>Sabores</span>
-          <span id="hero-word" class="font-script text-[0.85em] font-normal text-primary-glow leading-none whitespace-nowrap">
+        <!-- Disposição do Título ajustada -->
+        <h1 class="mt-3 text-4xl sm:text-6xl font-display font-black leading-[0.95]">
+          Sabores <br>
+          <span id="hero-word" class="font-script font-normal text-primary-glow text-[0.85em] leading-tight block mt-1">
             crocantes
           </span>
         </h1>
 
-        <p id="hero-line" class="mt-4 max-w-md text-lg text-cream/90 font-medium">
+        <!-- Disposição do Texto ajustada -->
+        <p id="hero-line" class="mt-3 max-w-md text-base sm:text-lg text-cream/90 font-medium leading-relaxed">
           fritos e assados, fresquinhos todo dia.<br>Experiência única em cada sabor! ✨
         </p>
       </div>
 
-      <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="100">
-        <a href="https://wa.me/5551993214833" target="_blank" rel="noreferrer" class="rounded-full bg-gradient-candy text-white font-bold px-8 py-4 shadow-candy transition-all duration-300 text-center text-lg hover:-translate-y-0.5">
+      <!-- Botões elegantes alinhados à esquerda -->
+      <div class="mt-5 flex flex-wrap items-center justify-start gap-2.5" data-aos="fade-up" data-aos-delay="100">
+        <a href="https://wa.me/5551993214833" target="_blank" rel="noreferrer" class="rounded-full bg-gradient-candy text-white font-bold px-6 py-3 shadow-candy transition-all duration-300 text-sm hover:-translate-y-0.5">
           Pedir pelo WhatsApp
         </a>
-        <a href="#cardapio" class="rounded-full border border-cream/40 bg-cream/15 text-cream font-semibold px-8 py-4 backdrop-blur-md transition-all duration-300 text-center hover:bg-cream/25">
-          Ver cardápio <i class="fas fa-arrow-down ml-2"></i>
+        <a href="#cardapio" class="rounded-full border border-cream/40 bg-cream/15 text-cream font-semibold px-6 py-3 backdrop-blur-md transition-all duration-300 text-sm hover:bg-cream/25">
+          Ver cardápio <i class="fas fa-arrow-down ml-1"></i>
         </a>
       </div>
       
       <!-- Indicadores do Slider -->
-      <div class="flex gap-2 mt-8">
-        <div class="h-1.5 w-12 bg-primary-glow rounded-full"></div>
-        <div class="h-1.5 w-12 bg-cream/30 rounded-full"></div>
-        <div class="h-1.5 w-12 bg-cream/30 rounded-full"></div>
+      <div class="flex gap-2 mt-6">
+        <div class="h-1.5 w-10 bg-primary-glow rounded-full"></div>
+        <div class="h-1.5 w-10 bg-cream/30 rounded-full"></div>
+        <div class="h-1.5 w-10 bg-cream/30 rounded-full"></div>
       </div>
     </div>
   </section>
 
-  <!-- Marquee (Letreiro Rolante em Ângulo - Palavras lado a lado) -->
+  <!-- Marquee (Letreiro Rolante em Ângulo com Estrela ✦) -->
   <div class="relative z-20 -rotate-2 -mx-4 -my-2 bg-primary text-white overflow-hidden py-3.5 shadow-candy border-y-2 border-white/20">
     <div class="animate-marquee marquee-container font-display font-bold text-base md:text-lg">
       <span class="mx-4 flex items-center gap-4 whitespace-nowrap">
@@ -150,7 +152,7 @@
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Kibe</span>
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Brigadeiro</span>
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Empada</span>
-        <!-- Duplicado para efeito contínuo sem saltos -->
+        <!-- Duplicado para fluidez -->
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Bolinha de queijo</span>
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Esfiha</span>
         <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Torta</span>
@@ -394,7 +396,7 @@
     </div>
   </section>
 
-  <!-- Contato & Footer (Fundo Rosa) -->
+  <!-- Contato & Footer (Fundo Rosa com Logo Limpo) -->
   <footer class="bg-primary text-white px-5 pt-16 pb-8 rounded-t-[3rem]">
     <div class="max-w-md mx-auto">
       <h2 class="text-5xl font-display font-black leading-tight mb-4 text-center">Bateu a vontade?<br>Chama a gente!</h2>
@@ -421,8 +423,9 @@
         </div>
       </a>
 
+      <!-- Rodapé com Logo Limpo -->
       <div class="text-center border-t border-white/20 pt-8 mt-4">
-        <img src="./logo.png" class="h-20 w-20 mx-auto object-contain bg-white rounded-full p-1 mb-4 shadow-soft" alt="Logo Rodapé">
+        <img src="./logo.png" class="h-20 w-auto mx-auto object-contain mb-4" alt="Logo Rodapé">
         <p class="text-xs text-white/90 font-medium">® Cia dos Salgados e Doces | Todos os direitos reservados</p>
         <p class="text-xs text-white/80 mt-1">
           <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="hover:underline font-semibold">
