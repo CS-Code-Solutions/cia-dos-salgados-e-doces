@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cia dos Salgados e Doces - Pedidos Online</title>
+  
+  <!-- Favicon aplicado -->
+  <link rel="icon" type="image/png" href="./ico.png">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <script>
@@ -11,7 +15,7 @@
       theme: {
         extend: {
           colors: {
-            brand: '#FF6B00', /* Laranja que estimula o apetite */
+            brand: '#FF6B00',
             dark: '#2D3748'
           }
         }
@@ -24,9 +28,12 @@
   <!-- Header / Nav -->
   <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="font-bold text-2xl text-brand">
-        <i class="fas fa-cookie-bite mr-2"></i>Cia dos Salgados
-      </div>
+      
+      <!-- Logo aplicada -->
+      <a href="#" class="block">
+        <img src="./logo.png" alt="Cia dos Salgados e Doces" class="h-12 md:h-14 w-auto object-contain">
+      </a>
+
       <a href="#cardapio" class="bg-brand text-white px-5 py-2 rounded-full font-semibold hover:bg-orange-600 transition">
         Fazer Pedido
       </a>
