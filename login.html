@@ -214,8 +214,15 @@
           </div>
           <div>
             <label class="block text-xs font-bold uppercase text-chocolate mb-2">Imagem da Promoção</label>
-            <input type="file" accept="image/*" onchange="previewAndCompress(this, 'promo-preview-img')" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-primary-glow cursor-pointer">
-            <img id="promo-preview-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="mt-3 w-full h-40 object-cover rounded-2xl shadow-sm">
+
+            <!-- Botão de Upload Customizado -->
+            <label class="flex items-center justify-center gap-2.5 w-full bg-blush border border-chocolate/10 text-chocolate font-bold text-xs py-3 px-4 rounded-2xl cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
+              <i class="fas fa-cloud-upload-alt text-base"></i>
+              <span>Escolher Imagem do Dispositivo</span>
+              <input type="file" accept="image/*" onchange="previewAndCompress(this, 'promo-preview-img')" class="hidden">
+            </label>
+
+            <img id="promo-preview-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="mt-3 w-full h-44 object-cover rounded-2xl shadow-sm border border-chocolate/5">
           </div>
           <button type="submit" class="w-full rounded-full bg-gradient-candy text-white font-bold py-3.5 shadow-candy hover:scale-105 transition-all text-xs">
             Atualizar Promoção
@@ -250,7 +257,7 @@
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
     <div class="bg-cream w-full max-w-lg rounded-[2.5rem] shadow-2xl p-6 overflow-hidden border border-white/20">
       <div class="flex justify-between items-center pb-4 border-b border-chocolate/10">
-        <h3 class="font-display font-bold text-xl text-chocolate">Cadastrar Produto</h3>
+        <h3 id="modal-product-title" class="font-display font-bold text-xl text-chocolate">Cadastrar Produto</h3>
         <button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-blush flex items-center justify-center text-chocolate">
           <i class="fas fa-times text-xs"></i>
         </button>
@@ -281,7 +288,13 @@
         </div>
         <div>
           <label class="block text-xs font-bold uppercase text-chocolate mb-1">Foto do Dispositivo (Compactação Automática)</label>
-          <input type="file" accept="image/*" id="prod-file-input" required onchange="previewAndCompress(this, 'prod-preview-img')" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-primary-glow cursor-pointer">
+          
+          <label class="flex items-center justify-center gap-2 w-full bg-blush border border-chocolate/10 text-chocolate font-bold text-xs py-3 px-4 rounded-xl cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
+            <i class="fas fa-camera"></i>
+            <span id="prod-file-label-text">Selecionar Imagem</span>
+            <input type="file" accept="image/*" id="prod-file-input" onchange="previewAndCompress(this, 'prod-preview-img')" class="hidden">
+          </label>
+
           <div class="mt-2 flex items-center gap-3">
             <img id="prod-preview-img" src="" class="hidden w-20 h-20 object-cover rounded-xl border border-primary/20">
             <span id="compress-status" class="text-[10px] text-gray-500 font-bold"></span>
@@ -336,7 +349,7 @@
       activeBtn.classList.remove('text-cream/80');
     }
 
-    // Compactação de Imagens com Canvas (Redimensionamento a máx 800px & qualidade 0.75 JPEG)
+    // Compactação de Imagens com Canvas
     let tempCompressedBase64 = '';
 
     function compressImage(file, maxWidth = 800, quality = 0.75) {
@@ -394,29 +407,61 @@
       { name: 'Mix de fritos', price: 75.00, category: 'Salgados', desc: 'Coxinha, kibe, bolinha de queijo.', img: 'https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400' }
     ];
 
+    let editingIndex = null;
+
     function renderProducts() {
       const grid = document.getElementById('products-grid');
       grid.innerHTML = products.map((p, index) => `
-        <div class="bg-white rounded-2xl shadow-soft p-3 flex flex-col justify-between">
-          <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3">
+        <div class="bg-white rounded-2xl shadow-soft p-3.5 flex flex-col justify-between border border-chocolate/5">
           <div>
-            <span class="text-[10px] font-bold bg-blush text-primary px-2 py-0.5 rounded-full uppercase">${p.category}</span>
-            <h4 class="font-bold text-chocolate text-sm mt-1">${p.name}</h4>
-            <p class="text-xs text-gray-500 line-clamp-1">${p.desc}</p>
+            <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3 shadow-sm">
+            <span class="text-[10px] font-bold bg-blush text-primary px-2.5 py-0.5 rounded-full uppercase">${p.category}</span>
+            <h4 class="font-bold text-chocolate text-sm mt-1.5 truncate">${p.name}</h4>
+            <p class="text-xs text-gray-500 line-clamp-1 mt-0.5">${p.desc}</p>
             <p class="font-black text-primary text-base mt-2">R$ ${p.price.toFixed(2).replace('.', ',')}</p>
           </div>
-          <button onclick="deleteProduct(${index})" class="mt-3 w-full bg-red-50 text-red-500 font-bold text-xs py-2 rounded-full hover:bg-red-500 hover:text-white transition-colors">
-            <i class="fas fa-trash"></i> Remover
-          </button>
+          <div class="mt-4 flex gap-2">
+            <button onclick="editProduct(${index})" class="flex-1 bg-amber-50 text-amber-600 font-bold text-xs py-2 rounded-full hover:bg-amber-500 hover:text-white transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <i class="fas fa-pen text-[10px]"></i> Editar
+            </button>
+            <button onclick="deleteProduct(${index})" class="flex-1 bg-red-50 text-red-500 font-bold text-xs py-2 rounded-full hover:bg-red-500 hover:text-white transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <i class="fas fa-trash text-[10px]"></i> Remover
+            </button>
+          </div>
         </div>
       `).join('');
     }
 
     function openProductModal() {
-      document.getElementById('product-modal').classList.remove('hidden');
+      editingIndex = null;
+      document.getElementById('modal-product-title').innerText = 'Cadastrar Produto';
+      document.getElementById('prod-title').value = '';
+      document.getElementById('prod-price').value = '';
+      document.getElementById('prod-category').value = 'Salgados';
+      document.getElementById('prod-desc').value = '';
+      document.getElementById('prod-file-label-text').innerText = 'Selecionar Imagem';
       tempCompressedBase64 = '';
       document.getElementById('prod-preview-img').classList.add('hidden');
       document.getElementById('compress-status').innerText = '';
+      document.getElementById('product-modal').classList.remove('hidden');
+    }
+
+    function editProduct(index) {
+      editingIndex = index;
+      const p = products[index];
+      document.getElementById('modal-product-title').innerText = 'Editar Produto';
+      document.getElementById('prod-title').value = p.name;
+      document.getElementById('prod-price').value = p.price;
+      document.getElementById('prod-category').value = p.category;
+      document.getElementById('prod-desc').value = p.desc;
+      document.getElementById('prod-file-label-text').innerText = 'Alterar Imagem (Opcional)';
+
+      tempCompressedBase64 = p.img;
+      const imgEl = document.getElementById('prod-preview-img');
+      imgEl.src = p.img;
+      imgEl.classList.remove('hidden');
+
+      document.getElementById('product-modal').classList.remove('hidden');
     }
 
     function closeProductModal() {
@@ -431,20 +476,29 @@
       const desc = document.getElementById('prod-desc').value;
 
       if (!tempCompressedBase64) {
-        alert('Selecione uma imagem!');
+        alert('Selecione uma imagem para o produto!');
         return;
       }
 
-      products.push({ name: title, price, category, desc, img: tempCompressedBase64 });
+      const productData = { name: title, price, category, desc, img: tempCompressedBase64 };
+
+      if (editingIndex !== null) {
+        products[editingIndex] = productData;
+      } else {
+        products.push(productData);
+      }
+
       localStorage.setItem('cia_salgados_products', JSON.stringify(products));
       renderProducts();
       closeProductModal();
     }
 
     function deleteProduct(index) {
-      products.splice(index, 1);
-      localStorage.setItem('cia_salgados_products', JSON.stringify(products));
-      renderProducts();
+      if (confirm('Deseja realmente remover este produto?')) {
+        products.splice(index, 1);
+        localStorage.setItem('cia_salgados_products', JSON.stringify(products));
+        renderProducts();
+      }
     }
 
     // Categorias Render
@@ -472,6 +526,11 @@
     function deleteCategory(idx) {
       categories.splice(idx, 1);
       renderCategories();
+    }
+
+    function savePromo(e) {
+      e.preventDefault();
+      alert('Promoção atualizada com sucesso!');
     }
 
     // Inicialização
