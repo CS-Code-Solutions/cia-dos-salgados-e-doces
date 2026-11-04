@@ -153,7 +153,7 @@
     </div>
   </section>
 
-  <!-- Marquee (Letreiro Rolante) -->
+  <!-- Marquee -->
   <div class="relative z-20 -rotate-2 -mx-4 -my-2 bg-primary text-white overflow-hidden py-3.5 shadow-candy border-y-2 border-white/20">
     <div class="animate-marquee marquee-container font-display font-bold text-base md:text-lg">
       <span class="mx-4 flex items-center gap-4 whitespace-nowrap">
@@ -340,7 +340,7 @@
     </div>
   </section>
 
-  <!-- Seção de Promoção (Escura) -->
+  <!-- Seção de Promoção -->
   <section class="px-5 py-10 md:px-10">
     <div class="max-w-6xl mx-auto">
       <div class="bg-chocolate rounded-[2rem] overflow-hidden shadow-soft flex flex-col md:flex-row relative" data-aos="fade-up">
@@ -377,7 +377,7 @@
     </div>
   </section>
 
-  <!-- Como Pedir (Fundo Mint Green) -->
+  <!-- Como Pedir -->
   <section class="bg-secondary px-5 py-16 md:px-10 rounded-t-[3rem]">
     <div class="max-w-xl mx-auto">
       <p class="font-script text-2xl text-primary mb-1 text-center">é fácil pedir</p>
@@ -468,39 +468,50 @@
     </div>
   </footer>
 
-  <!-- Modal / Drawer Flutuante do Carrinho de Compras -->
-  <div id="cart-modal" class="fixed inset-0 z-[100] hidden flex justify-end bg-black/60 backdrop-blur-sm transition-opacity">
-    <div class="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between overflow-hidden animate-[slideLeft_0.3s_ease-out]">
+  <!-- Modal / Drawer Flutuante Elegante do Carrinho de Compras -->
+  <div id="cart-modal" class="fixed inset-0 z-[100] hidden flex justify-end bg-black/60 backdrop-blur-md transition-all duration-300">
+    <div class="w-full max-w-md bg-cream h-full shadow-2xl flex flex-col justify-between overflow-hidden sm:rounded-l-[2.5rem]">
       
-      <!-- Cabeçalho do Carrinho -->
-      <div class="bg-chocolate text-cream p-5 flex items-center justify-between border-b border-white/10">
-        <div class="flex items-center gap-3">
-          <i class="fas fa-shopping-bag text-primary-glow text-xl"></i>
-          <h3 class="font-display font-bold text-xl">Seu Pedido</h3>
+      <!-- Cabeçalho do Carrinho Redenhado -->
+      <div class="bg-chocolate text-cream p-6 flex items-center justify-between border-b border-white/10 sm:rounded-tl-[2.5rem]">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-2xl bg-primary/20 flex items-center justify-center text-primary-glow border border-primary/30 shadow-inner">
+            <i class="fas fa-shopping-bag text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl leading-none">O Seu Pedido</h3>
+            <span id="modal-item-count" class="text-[11px] text-cream/70 font-medium mt-1 block">0 itens selecionados</span>
+          </div>
         </div>
-        <button onclick="toggleCartModal()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-cream hover:bg-white/20 transition-colors">
-          <i class="fas fa-times"></i>
+        <button onclick="toggleCartModal()" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-cream hover:bg-white/20 transition-all active:scale-95 shadow-sm">
+          <i class="fas fa-times text-sm"></i>
         </button>
       </div>
 
       <!-- Lista de Itens do Carrinho -->
-      <div id="cart-items-container" class="p-5 overflow-y-auto flex-1 space-y-4">
+      <div id="cart-items-container" class="p-6 overflow-y-auto flex-1 space-y-3.5 no-scrollbar">
         <!-- Renderizado via JS -->
       </div>
 
-      <!-- Rodapé do Carrinho com Subtotal e Checkout -->
-      <div class="p-5 bg-blush border-t border-chocolate/10 space-y-4">
-        <div class="flex justify-between items-center text-chocolate">
-          <span class="font-medium text-sm">Subtotal do pedido:</span>
-          <span id="cart-total-price" class="font-display font-black text-2xl text-primary">R$ 0,00</span>
+      <!-- Rodapé do Carrinho com Subtotal e Checkout Elegantes -->
+      <div class="p-6 bg-white border-t border-chocolate/10 space-y-4 shadow-2xl">
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs text-gray-500 font-medium">
+            <span>Entrega / Retirada</span>
+            <span class="text-chocolate font-bold bg-secondary/60 px-2.5 py-0.5 rounded-full">A combinar</span>
+          </div>
+          <div class="flex justify-between items-baseline text-chocolate border-t border-dashed border-gray-200 pt-3">
+            <span class="font-bold text-sm text-gray-600">Subtotal acumulado:</span>
+            <span id="cart-total-price" class="font-display font-black text-2xl text-primary">R$ 0,00</span>
+          </div>
         </div>
         
-        <div class="flex flex-col gap-2">
-          <button onclick="checkoutWhatsApp()" class="w-full rounded-full bg-whatsapp text-white font-bold py-3.5 shadow-soft flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-transform text-base">
-            <i class="fab fa-whatsapp text-xl"></i> Finalizar via WhatsApp
+        <div class="flex flex-col gap-2.5 pt-1">
+          <button onclick="checkoutWhatsApp()" class="w-full rounded-full bg-whatsapp text-white font-bold py-3.5 px-4 shadow-soft flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 transition-all text-sm tracking-wide">
+            <i class="fab fa-whatsapp text-xl"></i> Finalizar Pedido via WhatsApp
           </button>
-          <button onclick="toggleCartModal()" class="w-full rounded-full border border-chocolate/20 text-chocolate font-bold py-2.5 text-xs text-center hover:bg-white/50 transition-colors">
-            Voltar ao Cardápio
+          <button onclick="toggleCartModal()" class="w-full rounded-full bg-blush/60 text-chocolate font-bold py-2.5 text-xs text-center hover:bg-blush transition-colors">
+            Continuar a Escolher
           </button>
         </div>
       </div>
@@ -544,11 +555,16 @@
       const totalBadge = document.getElementById('floating-cart-badge');
       const headerBadge = document.getElementById('header-cart-badge');
       const totalPriceEl = document.getElementById('cart-total-price');
+      const modalItemCount = document.getElementById('modal-item-count');
       
       const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
       const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-      // Atualiza Badges
+      // Atualiza Badges e Contador
+      if (modalItemCount) {
+        modalItemCount.innerText = totalCount === 1 ? '1 item selecionado' : `${totalCount} itens selecionados`;
+      }
+
       if (totalCount > 0) {
         totalBadge.innerText = totalCount;
         totalBadge.classList.remove('hidden');
@@ -562,29 +578,31 @@
       // Atualiza Subtotal
       totalPriceEl.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
 
-      // Renderiza Itens
+      // Renderiza Itens com Design Elegante
       if (cart.length === 0) {
         container.innerHTML = `
-          <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 py-12">
-            <i class="fas fa-cookie-bite text-5xl mb-3 text-primary/30"></i>
-            <p class="font-bold text-chocolate text-lg">Seu carrinho está vazio</p>
-            <p class="text-xs text-gray-500 mt-1 max-w-[200px]">Escolha suas delícias no cardápio e adicione aqui!</p>
+          <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 py-16">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+              <i class="fas fa-cookie-bite text-3xl"></i>
+            </div>
+            <p class="font-bold text-chocolate text-lg">O seu carrinho está vazio</p>
+            <p class="text-xs text-gray-500 mt-1 max-w-[210px]">Explore as opções no cardápio e adicione os seus produtos preferidos!</p>
           </div>
         `;
         return;
       }
 
       container.innerHTML = cart.map((item, index) => `
-        <div class="flex items-center gap-3 bg-white p-3 rounded-2xl shadow-soft border border-chocolate/5">
-          <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl shrink-0">
+        <div class="flex items-center gap-3.5 bg-white p-3.5 rounded-2xl shadow-soft border border-chocolate/5 transition-all hover:border-primary/20">
+          <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl shrink-0 shadow-sm">
           <div class="flex-1 min-w-0">
             <h4 class="font-bold text-sm text-chocolate truncate leading-tight">${item.name}</h4>
             <p class="text-xs font-black text-primary mt-1">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</p>
           </div>
-          <div class="flex items-center gap-2 bg-blush px-2 py-1 rounded-full border border-chocolate/10">
-            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors">-</button>
-            <span class="text-xs font-bold text-chocolate px-1">${item.qty}</span>
-            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors">+</button>
+          <div class="flex items-center gap-1.5 bg-blush px-2.5 py-1.5 rounded-full border border-chocolate/10 shadow-inner">
+            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm active:scale-90">-</button>
+            <span class="text-xs font-bold text-chocolate px-1.5 min-w-[1.2rem] text-center">${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm active:scale-90">+</button>
           </div>
         </div>
       `).join('');
@@ -602,7 +620,7 @@
 
     function checkoutWhatsApp() {
       if (cart.length === 0) {
-        alert('Seu carrinho está vazio!');
+        alert('O seu carrinho está vazio!');
         return;
       }
 
