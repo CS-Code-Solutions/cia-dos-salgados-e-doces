@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | Cia dos Salgados e Doces</title>
+  <link rel="icon" type="image/png" href="./ico.png">
+  
+  <!-- Fontes do Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Ícones -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Fraunces"', 'serif'],
+            script: ['"Pacifico"', 'cursive'],
+          },
+          colors: {
+            primary: '#c41d5e',      
+            'primary-glow': '#f0426d',
+            secondary: '#c8f5d0',    
+            chocolate: '#3a2318',    
+            cream: '#fdfbf9',        
+            blush: '#f9e8ea',        
+            whatsapp: '#25D366'
+          },
+          boxShadow: {
+            'candy': '0 12px 30px -10px rgba(196, 29, 94, 0.6)',
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Card de Login com LED Reativo */
+    .led-card {
+      position: relative;
+      background: rgba(58, 35, 24, 0.85);
+      backdrop-filter: blur(16px);
+    }
+    .led-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 2rem;
+      padding: 2px;
+      background: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(240, 66, 109, 0.9), rgba(196, 29, 94, 0.4) 40%, transparent 80%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-blush text-chocolate font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ================= TELA DE LOGIN ================= -->
+  <section id="login-view" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-cover bg-center" style="background-image: linear-gradient(rgba(58, 35, 24, 0.65), rgba(58, 35, 24, 0.85)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1600');">
+    
+    <div id="login-card" class="led-card w-full max-w-md rounded-[2rem] p-8 shadow-2xl text-cream relative overflow-hidden transition-all duration-300">
+      
+      <div class="text-center mb-8">
+        <img src="./logo.png" alt="Logo Cia dos Salgados e Doces" class="h-20 w-auto mx-auto object-contain mb-3 drop-shadow-md">
+        <h1 class="font-display font-black text-2xl text-white">Painel de Gestão</h1>
+        <p class="text-xs text-cream/70 mt-1">Cia dos Salgados e Doces</p>
+      </div>
+
+      <form onsubmit="handleLogin(event)" class="space-y-5">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider mb-2 text-cream/80">Usuário</label>
+          <div class="relative">
+            <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-primary-glow"></i>
+            <input type="text" id="login-user" value="admin" required class="w-full bg-white/10 border border-white/20 rounded-full py-3.5 pl-11 pr-4 text-sm text-white placeholder-cream/40 focus:outline-none focus:border-primary-glow focus:ring-1 focus:ring-primary-glow transition-all">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider mb-2 text-cream/80">Senha</label>
+          <div class="relative">
+            <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-primary-glow"></i>
+            <input type="password" id="login-pass" value="123456" required class="w-full bg-white/10 border border-white/20 rounded-full py-3.5 pl-11 pr-4 text-sm text-white placeholder-cream/40 focus:outline-none focus:border-primary-glow focus:ring-1 focus:ring-primary-glow transition-all">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full rounded-full bg-gradient-candy text-white font-bold py-4 shadow-candy hover:scale-[1.02] active:scale-95 transition-all text-sm flex items-center justify-center gap-2">
+          <i class="fas fa-sign-in-alt"></i> Entrar no Painel
+        </button>
+      </form>
+
+      <div class="mt-8 text-center border-t border-white/10 pt-4">
+        <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" class="text-[11px] text-cream/60 hover:text-white transition-colors font-semibold">
+          Powered by CS Code Solutions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAINEL ADMINISTRATIVO ================= -->
+  <div id="admin-view" class="hidden flex-1 flex flex-col md:flex-row min-h-screen">
+    
+    <!-- Sidebar / Navegação -->
+    <aside class="w-full md:w-64 bg-chocolate text-cream p-6 flex flex-col justify-between shrink-0 border-b md:border-b-0 md:border-r border-white/10">
+      <div>
+        <div class="flex items-center gap-3 pb-6 border-b border-white/10">
+          <img src="./ico.png" class="h-10 w-10 object-contain" alt="Ícone Marca">
+          <div>
+            <h2 class="font-display font-bold text-lg leading-none">Painel Admin</h2>
+            <span class="text-[10px] text-primary-glow font-bold uppercase tracking-wider">Gestão Rápida</span>
+          </div>
+        </div>
+
+        <!-- Menu Tabs -->
+        <nav class="mt-6 space-y-2">
+          <button onclick="switchTab('produtos')" id="btn-tab-produtos" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold bg-primary text-white shadow-candy transition-all">
+            <i class="fas fa-box"></i> Produtos & Fotos
+          </button>
+          <button onclick="switchTab('banners')" id="btn-tab-banners" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-cream/80 hover:bg-white/10 transition-all">
+            <i class="fas fa-images"></i> Carrossel Banners
+          </button>
+          <button onclick="switchTab('promocoes')" id="btn-tab-promocoes" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-cream/80 hover:bg-white/10 transition-all">
+            <i class="fas fa-tags"></i> Promoções
+          </button>
+          <button onclick="switchTab('categorias')" id="btn-tab-categorias" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-cream/80 hover:bg-white/10 transition-all">
+            <i class="fas fa-layer-group"></i> Categorias
+          </button>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 space-y-3">
+        <button onclick="handleLogout()" class="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-cream rounded-full py-2.5 text-xs font-bold transition-all">
+          <i class="fas fa-sign-out-alt"></i> Sair da Conta
+        </button>
+        <p class="text-[10px] text-center text-cream/50">
+          <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" class="hover:underline">
+            Powered by CS Code Solutions
+          </a>
+        </p>
+      </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 p-6 md:p-10 max-w-5xl overflow-y-auto">
+
+      <!-- ABAS -->
+      <!-- Tab 1: Produtos -->
+      <section id="tab-produtos" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="text-3xl font-display font-black text-chocolate">Gestão de Produtos</h2>
+            <p class="text-xs text-gray-500 mt-1">Imagens enviadas são automaticamente compactadas para alta performance.</p>
+          </div>
+          <button onclick="openProductModal()" class="rounded-full bg-gradient-candy text-white font-bold px-6 py-3 shadow-candy hover:scale-105 transition-all text-xs flex items-center gap-2">
+            <i class="fas fa-plus"></i> Novo Produto
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="products-grid">
+          <!-- Renderizado via JS -->
+        </div>
+      </section>
+
+      <!-- Tab 2: Banners -->
+      <section id="tab-banners" class="tab-content hidden">
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h2 class="text-3xl font-display font-black text-chocolate">Banners do Topo</h2>
+            <p class="text-xs text-gray-500 mt-1">Altere as imagens e frases do carrossel principal.</p>
+          </div>
+          <button onclick="openBannerModal()" class="rounded-full bg-gradient-candy text-white font-bold px-6 py-3 shadow-candy hover:scale-105 transition-all text-xs flex items-center gap-2">
+            <i class="fas fa-plus"></i> Adicionar Banner
+          </button>
+        </div>
+
+        <div class="space-y-4" id="banners-list">
+          <!-- Renderizado via JS -->
+        </div>
+      </section>
+
+      <!-- Tab 3: Promoções -->
+      <section id="tab-promocoes" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-display font-black text-chocolate">Sessão de Promoções</h2>
+          <p class="text-xs text-gray-500 mt-1">Atualize os valores e a imagem da promoção em destaque.</p>
+        </div>
+
+        <form onsubmit="savePromo(event)" class="bg-white p-6 rounded-[2rem] shadow-soft space-y-4 max-w-xl">
+          <div>
+            <label class="block text-xs font-bold uppercase text-chocolate mb-2">Título da Promoção</label>
+            <input type="text" id="promo-title" value="Promoções de tortas!" class="w-full bg-blush/40 border border-chocolate/10 rounded-2xl py-3 px-4 text-sm font-bold">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-chocolate mb-2">Preço 2 Fatias (un)</label>
+              <input type="number" step="0.01" id="promo-p1" value="14.99" class="w-full bg-blush/40 border border-chocolate/10 rounded-2xl py-3 px-4 text-sm font-bold">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-chocolate mb-2">Preço Combo 4 (+1)</label>
+              <input type="number" step="0.01" id="promo-p2" value="70.00" class="w-full bg-blush/40 border border-chocolate/10 rounded-2xl py-3 px-4 text-sm font-bold">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-chocolate mb-2">Imagem da Promoção</label>
+            <input type="file" accept="image/*" onchange="previewAndCompress(this, 'promo-preview-img')" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-primary-glow cursor-pointer">
+            <img id="promo-preview-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="mt-3 w-full h-40 object-cover rounded-2xl shadow-sm">
+          </div>
+          <button type="submit" class="w-full rounded-full bg-gradient-candy text-white font-bold py-3.5 shadow-candy hover:scale-105 transition-all text-xs">
+            Atualizar Promoção
+          </button>
+        </form>
+      </section>
+
+      <!-- Tab 4: Categorias -->
+      <section id="tab-categorias" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-display font-black text-chocolate">Categorias</h2>
+          <p class="text-xs text-gray-500 mt-1">Gerencie os filtros do cardápio.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] shadow-soft max-w-md space-y-4">
+          <div class="flex gap-2">
+            <input type="text" id="new-cat-name" placeholder="Nova categoria..." class="flex-1 bg-blush/40 border border-chocolate/10 rounded-full py-2.5 px-4 text-sm font-semibold">
+            <button onclick="addCategory()" class="rounded-full bg-primary text-white font-bold px-5 py-2.5 text-xs shadow-candy hover:scale-105 transition-all">
+              Adicionar
+            </button>
+          </div>
+          <ul id="categories-list" class="divide-y divide-gray-100">
+            <!-- Renderizado via JS -->
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal de Adicionar/Editar Produto -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-cream w-full max-w-lg rounded-[2.5rem] shadow-2xl p-6 overflow-hidden border border-white/20">
+      <div class="flex justify-between items-center pb-4 border-b border-chocolate/10">
+        <h3 class="font-display font-bold text-xl text-chocolate">Cadastrar Produto</h3>
+        <button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-blush flex items-center justify-center text-chocolate">
+          <i class="fas fa-times text-xs"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveProduct(event)" class="space-y-4 mt-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-chocolate mb-1">Nome do Produto</label>
+          <input type="text" id="prod-title" required class="w-full bg-white border border-chocolate/10 rounded-xl py-2.5 px-3 text-sm font-semibold">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold uppercase text-chocolate mb-1">Preço (R$)</label>
+            <input type="number" step="0.01" id="prod-price" required class="w-full bg-white border border-chocolate/10 rounded-xl py-2.5 px-3 text-sm font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-chocolate mb-1">Categoria</label>
+            <select id="prod-category" class="w-full bg-white border border-chocolate/10 rounded-xl py-2.5 px-3 text-sm font-semibold">
+              <option value="Salgados">Salgados</option>
+              <option value="Doces">Doces</option>
+              <option value="Tortas">Tortas</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-chocolate mb-1">Descrição Curta</label>
+          <input type="text" id="prod-desc" required class="w-full bg-white border border-chocolate/10 rounded-xl py-2.5 px-3 text-sm font-semibold">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-chocolate mb-1">Foto do Dispositivo (Compactação Automática)</label>
+          <input type="file" accept="image/*" id="prod-file-input" required onchange="previewAndCompress(this, 'prod-preview-img')" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-primary-glow cursor-pointer">
+          <div class="mt-2 flex items-center gap-3">
+            <img id="prod-preview-img" src="" class="hidden w-20 h-20 object-cover rounded-xl border border-primary/20">
+            <span id="compress-status" class="text-[10px] text-gray-500 font-bold"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full rounded-full bg-gradient-candy text-white font-bold py-3.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-all text-xs">
+          Salvar Produto
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // LED Card Mouse Tracker
+    const loginCard = document.getElementById('login-card');
+    if (loginCard) {
+      loginCard.addEventListener('mousemove', (e) => {
+        const rect = loginCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        loginCard.style.setProperty('--mouse-x', `${x}px`);
+        loginCard.style.setProperty('--mouse-y', `${y}px`);
+      });
+    }
+
+    // Login Simples
+    function handleLogin(e) {
+      e.preventDefault();
+      document.getElementById('login-view').classList.add('hidden');
+      document.getElementById('admin-view').classList.remove('hidden');
+      document.getElementById('admin-view').classList.add('flex');
+    }
+
+    function handleLogout() {
+      document.getElementById('admin-view').classList.add('hidden');
+      document.getElementById('admin-view').classList.remove('flex');
+      document.getElementById('login-view').classList.remove('hidden');
+    }
+
+    // Alternar Abas
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white', 'shadow-candy');
+        btn.classList.add('text-cream/80');
+      });
+
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`btn-tab-${tabId}`);
+      activeBtn.classList.add('bg-primary', 'text-white', 'shadow-candy');
+      activeBtn.classList.remove('text-cream/80');
+    }
+
+    // Compactação de Imagens com Canvas (Redimensionamento a máx 800px & qualidade 0.75 JPEG)
+    let tempCompressedBase64 = '';
+
+    function compressImage(file, maxWidth = 800, quality = 0.75) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve(compressedDataUrl);
+          };
+        };
+      });
+    }
+
+    async function previewAndCompress(input, imgElementId) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const statusEl = document.getElementById('compress-status');
+        if (statusEl) statusEl.innerText = 'Otimizando imagem...';
+
+        tempCompressedBase64 = await compressImage(file);
+        
+        const imgEl = document.getElementById(imgElementId);
+        imgEl.src = tempCompressedBase64;
+        imgEl.classList.remove('hidden');
+
+        if (statusEl) {
+          const originalKB = (file.size / 1024).toFixed(0);
+          const compressedKB = (tempCompressedBase64.length * 0.75 / 1024).toFixed(0);
+          statusEl.innerText = `Otimizada: ${originalKB}KB ➔ ${compressedKB}KB`;
+        }
+      }
+    }
+
+    // Estado dos Produtos & Renderização Local
+    let products = JSON.parse(localStorage.getItem('cia_salgados_products')) || [
+      { name: 'Coxinha cremosa', price: 18.00, category: 'Salgados', desc: 'Massa sequinha e recheio de frango.', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400' },
+      { name: 'Mix de fritos', price: 75.00, category: 'Salgados', desc: 'Coxinha, kibe, bolinha de queijo.', img: 'https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400' }
+    ];
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = products.map((p, index) => `
+        <div class="bg-white rounded-2xl shadow-soft p-3 flex flex-col justify-between">
+          <img src="${p.img}" class="w-full h-36 object-cover rounded-xl mb-3">
+          <div>
+            <span class="text-[10px] font-bold bg-blush text-primary px-2 py-0.5 rounded-full uppercase">${p.category}</span>
+            <h4 class="font-bold text-chocolate text-sm mt-1">${p.name}</h4>
+            <p class="text-xs text-gray-500 line-clamp-1">${p.desc}</p>
+            <p class="font-black text-primary text-base mt-2">R$ ${p.price.toFixed(2).replace('.', ',')}</p>
+          </div>
+          <button onclick="deleteProduct(${index})" class="mt-3 w-full bg-red-50 text-red-500 font-bold text-xs py-2 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+            <i class="fas fa-trash"></i> Remover
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function openProductModal() {
+      document.getElementById('product-modal').classList.remove('hidden');
+      tempCompressedBase64 = '';
+      document.getElementById('prod-preview-img').classList.add('hidden');
+      document.getElementById('compress-status').innerText = '';
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const title = document.getElementById('prod-title').value;
+      const price = parseFloat(document.getElementById('prod-price').value);
+      const category = document.getElementById('prod-category').value;
+      const desc = document.getElementById('prod-desc').value;
+
+      if (!tempCompressedBase64) {
+        alert('Selecione uma imagem!');
+        return;
+      }
+
+      products.push({ name: title, price, category, desc, img: tempCompressedBase64 });
+      localStorage.setItem('cia_salgados_products', JSON.stringify(products));
+      renderProducts();
+      closeProductModal();
+    }
+
+    function deleteProduct(index) {
+      products.splice(index, 1);
+      localStorage.setItem('cia_salgados_products', JSON.stringify(products));
+      renderProducts();
+    }
+
+    // Categorias Render
+    let categories = ['Salgados', 'Doces', 'Tortas', 'Kit Festa'];
+
+    function renderCategories() {
+      const list = document.getElementById('categories-list');
+      list.innerHTML = categories.map((cat, idx) => `
+        <li class="py-3 flex justify-between items-center text-sm font-bold text-chocolate">
+          <span>${cat}</span>
+          <button onclick="deleteCategory(${idx})" class="text-red-400 hover:text-red-600 text-xs"><i class="fas fa-trash"></i></button>
+        </li>
+      `).join('');
+    }
+
+    function addCategory() {
+      const input = document.getElementById('new-cat-name');
+      if (input.value.trim()) {
+        categories.push(input.value.trim());
+        input.value = '';
+        renderCategories();
+      }
+    }
+
+    function deleteCategory(idx) {
+      categories.splice(idx, 1);
+      renderCategories();
+    }
+
+    // Inicialização
+    renderProducts();
+    renderCategories();
+  </script>
+</body>
+</html>
